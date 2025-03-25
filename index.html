@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebenslauf - Anais Ziane</title>
+    <style>
+        :root {
+            --primary: #FF6B6B; /* Vibrant coral */
+            --secondary: #4ECDC4; /* Fresh teal */
+            --accent: #FFA07A; /* Soft salmon */
+            --text: #2F4858; /* Deep navy */
+            --light: #F7FFF7; /* Crisp white */
+            --highlight: #FFE66D; /* Sunny yellow */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #F7FFF7 0%, #E8F7EE 100%);
+            margin: 0;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            background-color: white;
+            box-shadow: var(--shadow);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px dashed var(--secondary);
+        }
+        
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            margin-right: 2rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05);
+            border-color: var(--highlight);
+        }
+        
+        .header-text h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 2.4rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .header-text p {
+            margin: 0.5rem 0;
+            color: var(--text);
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+        
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .section {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: inline-block;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .skill {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: default;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .skill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--secondary);
+            transition: var(--transition);
+        }
+        
+        .experience-item:hover, .education-item:hover {
+            border-left-color: var(--primary);
+        }
+        
+        .experience-header, .education-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.7rem;
+        }
+        
+        .experience-title, .education-title {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .experience-company, .education-institution {
+            font-style: italic;
+            color: var(--text);
+            opacity: 0.9;
+        }
+        
+        .experience-date, .education-date {
+            color: var(--secondary);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .experience-description, .education-description {
+            margin-left: 1rem;
+        }
+        
+        .experience-description p {
+            position: relative;
+            padding-left: 1rem;
+        }
+        
+        .experience-description p::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+        }
+        
+        .language {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .language-level {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .cert-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.7rem;
+        }
+        
+        .cert-item::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.7rem;
+            font-size: 1.2rem;
+        }
+        
+        .cert-item a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+            transition: var(--transition);
+        }
+        
+        .cert-item a:hover {
+            color: var(--secondary);
+            border-bottom-color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .experience-header, .education-header {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            .experience-date, .education-date {
+                margin-top: 0.3rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.4s; }
+        .section:nth-child(6) { animation-delay: 0.5s; }
+        .section:nth-child(7) { animation-delay: 0.6s; }
+        
+        /* Floating bubbles decoration */
+        .bubble {
+            position: absolute;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+        }
+        
+        .bubble-1 {
+            width: 100px;
+            height: 100px;
+            top: -30px;
+            right: -30px;
+        }
+        
+        .bubble-2 {
+            width: 60px;
+            height: 60px;
+            bottom: 50px;
+            left: -20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Decorative bubbles -->
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        
+        <header>
+            <!-- Replace with your image path -->
+            <img src="YOUR_IMAGE_LINK_HERE" alt="Anais Ziane" class="profile-pic">
+            <div class="header-text">
+                <h1>Anais Ziane</h1>
+                <p>Hotelfachfrau-Auszubildende</p>
+                <div class="contact-info">
+                    <span>📍 Bejaia, Algerien</span>
+                    <span>📧 anaiszianedz@gmail.com</span>
+                    <span>📞 +213 554152496</span>
+                    <span>🔗 LinkedIn-Profil</span>
+                </div>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">Berufsprofil</h2>
+            <p>Leidenschaftliche und kundenorientierte Person mit umfangreicher Erfahrung in Gastronomie und Hotellerie. Fließend in Englisch, Französisch, Deutsch, Arabisch und Amazigh mit Grundkenntnissen in Türkisch. Starke Teamfähigkeit, Kommunikationsstärke und Problemlösungskompetenz. Suche eine Ausbildung als Hotelfachfrau, um Expertise in Gästebetreuung, Veranstaltungsorganisation und Hotelbetrieb zu entwickeln.</p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Kenntnisse & Fähigkeiten</h2>
+            <div class="skills">
+                <span class="skill">Kundenservice</span>
+                <span class="skill">Gästebetreuung</span>
+                <span class="skill">Mehrsprachigkeit</span>
+                <span class="skill">Speisen- und Getränkeservice</span>
+                <span class="skill">Eventkoordination</span>
+                <span class="skill">Zeitmanagement</span>
+                <span class="skill">Problemlösung</span>
+                <span class="skill">Teamführung</span>
+                <span class="skill">Interkulturelle Kompetenz</span>
+                <span class="skill">Organisationstalent</span>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Berufserfahrung</h2>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Ehrenamtliche Köchin</span>
+                        <span class="experience-company">Ramadan-Gemeinschaftsveranstaltung - Bejaia, Algerien</span>
+                    </div>
+                    <span class="experience-date">05.2022 – 03.2024</span>
+                </div>
+                <div class="experience-description">
+                    <p>Zubereitung und Ausgabe von 100+ Mahlzeiten täglich unter Gewährleistung von Qualität und Effizienz</p>
+                    <p>Zusammenarbeit mit einem Team zur Optimierung von Küchenabläufen und Reduzierung der Vorbereitungszeit</p>
+                    <p>Praktische Erfahrung im Lebensmittelservice und Gastgewerbe</p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Freiberufliche Autorin & Übersetzerin</span>
+                        <span class="experience-company">Selbstständig - Bejaia, Algerien</span>
+                    </div>
+                    <span class="experience-date">07.2021 – Heute</span>
+                </div>
+                <div class="experience-description">
+                    <p>Erstellung von 50+ Artikeln, Blogbeiträgen und Übersetzungen für diverse Kunden</p>
+                    <p>Entwicklung exzellenter Kommunikations- und Kundenservicefähigkeiten</p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Privatlehrerin für Englisch</span>
+                        <span class="experience-company">Selbstständig - Bejaia, Algerien</span>
+                    </div>
+                    <span class="experience-date">01.2025 – Heute</span>
+                </div>
+                <div class="experience-description">
+                    <p>Unterricht von 15+ Schülerinnen und Schülern zur Verbesserung ihrer Sprachkompetenz</p>
+                    <p>Stärkung von Geduld, Anpassungsfähigkeit und öffentlichem Sprechen</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Ausbildung</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div>
+                        <span class="education-title">Bachelor of Engineering in Informatik (laufend)</span>
+                        <span class="education-institution">Universität Bejaia, Algerien</span>
+                    </div>
+                    <span class="education-date">Abschluss voraussichtlich 2029</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Zertifizierungen</h2>
+            <div class="experience-description">
+                <!-- Add your certification links here -->
+                <div class="cert-item">C1 Deutsch-Zertifikat <a href="YOUR_CERT_LINK_HERE" target="_blank">(Zertifikat ansehen)</a></div>
+                <div class="cert-item">C1 Englisch-Zertifikat <a href="YOUR_CERT_LINK_HERE" target="_blank">(Zertifikat ansehen)</a></div>
+                <div class="cert-item">Lebensmittelsicherheit & Hygiene <a href="YOUR_CERT_LINK_HERE" target="_blank">(Zertifikat ansehen)</a></div>
+                <div class="cert-item">Grundlagen des Kochens & Backens <a href="YOUR_CERT_LINK_HERE" target="_blank">(Zertifikat ansehen)</a></div>
+                <div class="cert-item">Büroinformatik & Computerkenntnisse <a href="YOUR_CERT_LINK_HERE" target="_blank">(Zertifikat ansehen)</a></div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Sprachen</h2>
+            <div class="languages">
+                <div class="language">
+                    <span>🇩🇪 Deutsch</span>
+                    <span class="language-level">(Fließend, C1)</span>
+                </div>
+                <div class="language">
+                    <span>🇬🇧 Englisch</span>
+                    <span class="language-level">(Fließend, C1)</span>
+                </div>
+                <div class="language">
+                    <span>🇫🇷 Französisch</span>
+                    <span class="language-level">(Fortgeschritten, B2)</span>
+                </div>
+                <div class="language">
+                    <span>🇦🇪 Arabisch</span>
+                    <span class="language-level">(Muttersprache)</span>
+                </div>
+                <div class="language">
+                    <span>ⵣ Amazigh</span>
+                    <span class="language-level">(Muttersprache)</span>
+                </div>
+                <div class="language">
+                    <span>🇹🇷 Türkisch</span>
+                    <span class="language-level">(Grundkenntnisse, A2)</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Enhanced animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate sections on scroll
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Skill hover effects
+            const skills = document.querySelectorAll('.skill');
+            skills.forEach(skill => {
+                skill.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 15px rgba(0,0,0,0.15)';
+                });
+                
+                skill.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 3px 6px rgba(0,0,0,0.1)';
+                });
+                
+                skill.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+            
+            // Random color rotation for fun
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFA07A', '#FFE66D', '#6BFFB8'];
+            let currentColor = 0;
+            
+            setInterval(() => {
+                document.documentElement.style.setProperty('--primary', colors[currentColor]);
+                currentColor = (currentColor + 1) % colors.length;
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
